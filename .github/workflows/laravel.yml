@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      dir: ./vendor
+      dir: ${{ steps.composer-cache.outputs.dir }}
 
     steps:
       # Composer の vendor ディレクトリをキャッシュさせる
