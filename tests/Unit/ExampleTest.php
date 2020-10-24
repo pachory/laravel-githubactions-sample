@@ -2,10 +2,12 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ExampleTest extends TestCase
+class ExampleTest extends \Tests\TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -14,5 +16,16 @@ class ExampleTest extends TestCase
     public function testBasicTest()
     {
         $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     */
+    public function Eloquentのテスト()
+    {
+        $attribute = ['name' => \Illuminate\Support\Str::uuid()];
+        \App\Item::create($attribute);
+
+        $this->assertDatabaseHas('items', $attribute);
     }
 }
