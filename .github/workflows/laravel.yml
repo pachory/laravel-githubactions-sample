@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       # Composer の vendor ディレクトリをキャッシュさせる
       # key に composer.lock ファイルのハッシュ値を利用することで、ライブラリが追加された際はキャッシュ無視される
       - name: Get Composer Cache Directory
@@ -22,7 +24,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
-      - uses: actions/checkout@v2
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
