@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    outputs:
+      dir: ./vendor
+
     steps:
       # Composer の vendor ディレクトリをキャッシュさせる
       # key に composer.lock ファイルのハッシュ値を利用することで、ライブラリが追加された際はキャッシュ無視される
